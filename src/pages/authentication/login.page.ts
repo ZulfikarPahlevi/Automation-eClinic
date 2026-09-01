@@ -12,3 +12,5 @@ export class LoginPage {
 
 
 //belajar automation lagi
+
+//coba rubah dari windowsss
