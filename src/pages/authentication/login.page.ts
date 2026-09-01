@@ -9,3 +9,6 @@ export class LoginPage {
 // ini belajar git lagi
 
 // ini aku push lagi
+
+
+//belajar automation lagi
