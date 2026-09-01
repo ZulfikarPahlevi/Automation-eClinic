@@ -1,0 +1,23 @@
+{
+  "name": "proyek-playwright",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^26.4.0",
+    "playwright": "^1.52.0",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "playwright-core": "^1.52.0"
+  },
+  "description": ""
+}
