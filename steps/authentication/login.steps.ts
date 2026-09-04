@@ -1,5 +1,6 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import type { CustomWorld } from '../../src/support/world.js';
+import { env } from '../../src/config/env.js';
 
 Given('user berada di halaman login eClinic', async function (
   this: CustomWorld
@@ -18,14 +19,14 @@ When('user mengisi username {string}', async function (
   this: CustomWorld,
   username: string
 ) {
-  await this.loginPage.fillUsername(username);
+  await this.loginPage.fillUsername(env.loginUsername);
 });
 
 When('user mengisi password {string}', async function (
   this: CustomWorld,
   password: string
 ) {
-  await this.loginPage.fillPassword(password);
+  await this.loginPage.fillPassword(env.loginPassword);
 });
 
 When('user klik tombol Login', async function (

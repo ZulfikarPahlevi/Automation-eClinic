@@ -1,6 +1,7 @@
 import 'dotenv/config';
 
 export const env = {
-  username: process.env.ECLINIC_USERNAME,
-  password: process.env.ECLINIC_PASSWORD,
+  loginClinic: process.env.EC_LOGIN_CLINIC!,
+  loginUsername: process.env.EC_LOGIN_USERNAME!,
+  loginPassword: process.env.EC_LOGIN_PASSWORD!,
 };
