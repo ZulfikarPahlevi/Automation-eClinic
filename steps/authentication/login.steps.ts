@@ -14,12 +14,12 @@ When(
   "user mengisi nama faskes {string}",
   async function (this: CustomWorld, clinic: string) {
     await this.loginPage.fillClinic(env.loginClinic);
-    await this.page
-      .locator("#ui-id-4")
-      .getByText("Nama Faskes Bandung")
-      .click();
   },
 );
+
+When("user memilih faskes", async function (this: CustomWorld) {
+  await this.loginPage.selectClinic();
+});
 
 When("user mengisi username", async function (this: CustomWorld) {
   await this.loginPage.fillUsername(env.loginUsername);
@@ -31,6 +31,7 @@ When("user mengisi password", async function (this: CustomWorld) {
 
 When("user klik tombol Login", async function (this: CustomWorld) {
   await this.loginPage.clickLogin();
+  await this.page.pause();
 });
 
 Then("user berhasil masuk ke halaman Home", async function (this: CustomWorld) {
