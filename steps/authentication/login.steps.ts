@@ -10,15 +10,12 @@ Given(
   },
 );
 
-When(
-  "user mengisi nama faskes {string}",
-  async function (this: CustomWorld, clinic: string) {
-    await this.loginPage.fillClinic(env.loginClinic);
-  },
-);
+When("user mengisi nama faskes", async function (this: CustomWorld) {
+  await this.loginPage.fillClinic(env.loginClinic);
+});
 
 When("user memilih faskes", async function (this: CustomWorld) {
-  await this.loginPage.selectClinic();
+  await this.loginPage.selectClinic(env.loginClinic);
 });
 
 When("user mengisi username", async function (this: CustomWorld) {
@@ -31,10 +28,11 @@ When("user mengisi password", async function (this: CustomWorld) {
 
 When("user klik tombol Login", async function (this: CustomWorld) {
   await this.loginPage.clickLogin();
-  await this.page.pause();
 });
 
-Then("user berhasil masuk ke halaman Home", async function (this: CustomWorld) {
-  await expect(this.page).toHaveURL("dev4.eclinic.id/home");
-  // assertion Home kita rapikan setelah ini
-});
+Then(
+  "user berhasil masuk ke halaman Home",
+  async function (this: CustomWorld) {
+    await expect(this.page).toHaveURL("https://dev4.eclinic.id/home?broadcastNotif=1");
+  },
+);

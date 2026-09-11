@@ -1,4 +1,4 @@
-import type { Page } from "@playwright/test";
+import { expect, type Page } from "@playwright/test";
 
 export class LoginPage {
   constructor(private page: Page) {}
@@ -7,23 +7,24 @@ export class LoginPage {
     await this.page.locator("#nama-faskes").fill(clinic);
   }
 
-  async selectClinic() {
+  async selectClinic(clinicName: string) {
+    const escapedClinicName = clinicName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const clinic = this.page
-      .locator("#ui-id-4 .ui-menu-item")
-      .filter({ hasText: "KLINIK A DEV 4" });
+      .locator(".ui-autocomplete:visible .ui-menu-item")
+      .filter({
+        hasText: new RegExp(`^\\s*${escapedClinicName}\\s*$`, "i"),
+      })
+      .first();
 
     await clinic.waitFor({
       state: "visible",
       timeout: 10000,
     });
 
-    await clinic.click({ force: true });
+    await clinic.click();
 
-    await this.page.locator("#nama-faskes").waitFor({ state: "visible" });
-
-    console.log(
-      "NILAI FASKES SETELAH KLIK:",
-      await this.page.locator("#nama-faskes").inputValue(),
+    await expect(this.page.locator("#nama-faskes")).toHaveValue(
+      new RegExp(`^${escapedClinicName}$`, "i"),
     );
   }
   async fillUsername(username: string) {
